@@ -40,15 +40,15 @@ nav {
 
 html {
 
-  --color-accent: oklch(67.11% 0.2039 164.12)
+  --color-accent: oklch(67.11% 0.2039 164.12);
   accent-color: var(--color-accent);
-  background-color: oklch(var(--color-accent) 95% 5% h)
+  background-color: oklch(var(--color-accent) 95% 5% h);
 
 }
 
 nav a.current {
 
-  border-bottom-width: 0.4em;
+  border-bottom-width: 100px;
   border-bottom-color: oklch(80% 3% 200);
   font-weight: bold;
 
