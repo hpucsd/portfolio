@@ -47,6 +47,8 @@ nav {
 
 html {
 
-  accent-color: var(oklch(67.11% 0.2039 164.12));
+  --color-accent: oklch(67.11% 0.2039 164.12)
+  accent-color: var(--color-accent);
+  background-color: oklch(var(--color-accent) 95% 5% h)
 
 }
