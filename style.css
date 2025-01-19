@@ -22,7 +22,7 @@ nav {
 
   display: flex;
   border-bottom-width: 1px;
-  border-style: solid;
+  border-bottom-style: solid;
   border-bottom-color: oklch(80% 3% 200);
 
   a {
@@ -39,18 +39,28 @@ nav {
 }
 
 html {
-
+  
   --color-accent: oklch(67.11% 0.2039 164.12);
   accent-color: var(--color-accent);
-  background-color: var(--color-accent);
 
 }
 
 nav a.current {
 
-  border-bottom-width: 100px;
+  border-bottom-width: 2px;
   border-bottom-color: oklch(80% 3% 200);
   border-bottom-style: solid;
   font-weight: bold;
 
+}
+
+nav a:hover {
+
+  --color-accent: oklch(67.11% 0.2039 164.12);
+  border-bottom-width: 2px;
+  border-bottom-color: var(--color-accent);
+  border-bottom-style: solid;
+  background-color: oklch(from var(--color-accent) 95% 5% h);
+  font-weight: bold;
+  
 }
