@@ -32,7 +32,6 @@ nav {
     color: inherit;
     text-align: center;
     padding: 0.5em;
-    margin-bottom: 5px;
 
   }
 
@@ -63,4 +62,8 @@ nav a:hover {
   background-color: oklch(from var(--color-accent) 95% 5% h);
   font-weight: bold;
   
+}
+
+html.projects {
+            
 }
