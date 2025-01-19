@@ -6,31 +6,21 @@
     <title>Contact</title>
     <link rel="stylesheet" href="../style.css">
     <style>
-        input {
-            display: block;
-            width: 100%;
-            font-family: inherit;
-            box-sizing: border-box;
-            margin-block: 10px 10px;
-        }
-        textarea {
-            display: block;
-            width: 100%;
-            font-family: inherit;
-            box-sizing: border-box;
-            margin-block: 10px 10px;
-        }
-        button {
-            display: block;
-            width: 100%;
-            font-family: inherit;
-            box-sizing: border-box;
-            margin-block: 10px 10px;
+        form {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            grid-column: 1 / -1;
+            gap: 1em;
+
+            label {
+
+                display: contents;
+
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Contact</h1>
 
     <nav>
         <li><a href="https://hpucsd.github.io/portfolio/">Index</a></li>
@@ -39,6 +29,8 @@
         <li><a href="https://github.com/hpucsd" target="_blank">Github</a></li>
         <li><a href="https://hpucsd.github.io/portfolio/resume">Resume</a></li>
     </nav>
+
+    <h1>Contact</h1>
 
     <form action="mailto:hputhenparambil@ucsd.edu" method="POST" enctype="text/plain">
 
