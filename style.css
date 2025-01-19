@@ -50,5 +50,6 @@ nav a.current {
 
   border-bottom-width: 0.4em;
   border-bottom-color: oklch(80% 3% 200);
+  font-weight: bold;
 
 }
