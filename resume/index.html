@@ -5,10 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume</title>
     <style>
-        h1 {text-align: center;}
+        h1 {
+            text-align: center;
+        }
         h3 {text-align: center;}
         div {text-align: center;}
         p.time {text-align: right;}
+        p {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        p span.left {
+            text-align: left;
+        }
+
+        p span.right {
+            text-align: right;
+        }
+
+        h4 {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        h4 span.left {
+            text-align: left;
+        }
+
+        h4 span.right {
+            text-align: right;
+            font-size: 75%;
+        }
+
     </style>
     <link rel="stylesheet" href="../style.css">
 </head>
@@ -32,15 +61,17 @@
     
     <article class="profile">
         <h3>Profile Summary</h3>
-        <p>Diligent and analytical college student with creative ability and excellent problem-solving skills. Seeking to pursue a major in data science in college to obtain a career in artificial intelligence. Took on many computer science-related activities and courses to further my knowledge and gain experience on this topic.</p>
+        <p>     Diligent and analytical college student with creative ability and excellent problem-solving skills. Seeking to pursue a major in data science in college to obtain a career in artificial intelligence. Took on many computer science-related activities and courses to further my knowledge and gain experience on this topic.</p>
     </article>
 
     <hr></hr>
 
     <article class="education">
         <h3>Education</h3>
-        <p class="time">2023 - Present</p>
-        <p>University of California, San Diego, La Jolla, CA</p>
+        <p>
+            <span class="left">University of California, San Diego, La Jolla, CA</span>
+            <span class="right">2023 - Present</span>
+        </p>
         <p>Sophomore, Graduating in 2027</p>
         <p><b>GPA</b>: 4.0 <b>Relevant Coursework</b>: DSC 1, 2, 3, 4, 5, 6, 7, 8</p>
     </article>
@@ -52,8 +83,15 @@
         <h3>Relevant Experience</h3>
 
         <article class="relevant-exp-robotics">
+
+            <h4>
+                <span class="left"><b>Robotics Team</b>: <i>Programming Lead</i></span>
+                <span class="right"><time datetime="2020-08-20">September 2020</time> - <time datetime="2023-06-05">June 2023</time></span>
+            </h4>
+
             <h4><b>Robotics Team</b>: <i>Programming Lead</i></h4>
             <p class="time"><time datetime="2020-08-20">September 2020</time> - <time datetime="2023-06-05">June 2023</time></p>
+            
             <ul>
 
                 <li>Received the Inspiration award in the third year with the team and received second place in two seperate awards</li>
@@ -69,6 +107,12 @@
         <hr></hr>
 
         <article class="relevant-exp-volunteer">
+
+            <h4>
+                <span class="left"><b>Volunteer Organization</b>: <i>Core Lead</i></span>
+                <span class="right"><time datetime="2020-06-20">June 2020</time> - <time datetime="2023-06-05">June 2023</time></span>
+            </h4>
+
             <h4><b>Volunteer Organization</b>: <i>Core Lead</i></h4>
             <p class="time"><time datetime="2020-06-20">June 2020</time> - <time datetime="2023-06-05">June 2023</time></p>
             <ul>
@@ -86,6 +130,12 @@
         <hr></hr>
 
         <article class="relevant-exp-programming">
+
+            <h4>
+                <span class="left"><b>Programming Club</b>: <i>Teacher</i></span>
+                <span class="right"><time datetime="2019-08-20">September 2019</time> - <time datetime="2023-06-05">June 2023</time></span>
+            </h4>
+
             <h4><b>Programming Club</b>: <i>Teacher</i></h4>
             <p class="time"><time datetime="2019-08-20">September 2019</time> - <time datetime="2023-06-05">June 2023</time></p>
             <ul>
