@@ -4,7 +4,7 @@ body {
        */
     font: 100%/1.5 system-ui;
     max-width: 100ch;
-    margin-inline: 10px;
+    margin-inline: auto;
     padding: 20px;
 }
 
@@ -16,4 +16,31 @@ li {
 ul {
 
   display: contents;
+}
+
+nav {
+
+  display: flex;
+  border-bottom-width: 1px;
+  border-style: solid;
+  border-bottom-color: oklch(80% 3% 200);
+
+  a {
+    
+    flex: 1;
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+    padding: 0.5em;
+    margin-bottom: 10px;
+
+  }
+
+}
+
+a .current {
+  
+  border-bottom-width: 0.4em;
+  border-bottom-color: oklch(80% 3% 200);
+
 }
