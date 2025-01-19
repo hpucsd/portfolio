@@ -34,13 +34,19 @@ nav {
     padding: 0.5em;
     margin-bottom: 10px;
 
-    .current {
-  
-      border-bottom-width: 0.4em;
-      border-bottom-color: oklch(80% 3% 200);
-    
-    }
-
   }
+
+  a.current {
+  
+    border-bottom-width: 0.4em;
+    border-bottom-color: oklch(80% 3% 200);
+  
+  }
+
+}
+
+html {
+
+  accent-color: var(oklch(67.11% 0.2039 164.12));
 
 }
