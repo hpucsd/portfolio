@@ -16,7 +16,7 @@ console.log(navLinks);
 
 let pages = [
   { url: 'index.html', title: 'Home' },
-  { url: 'contacts/index.html', title: 'Contact' },
+  { url: 'contact/index.html', title: 'Contact' },
   { url: 'projects/index.html', title: 'Project' },
   { url: 'https://github.com/hpucsd', title: 'Github' },
   { url: 'resume/index.html', title: 'Resume' },
@@ -31,11 +31,8 @@ for (let p of pages) {
   nav.insertAdjacentHTML('beforeend', `<a href="${url}">${title}</a>`);
 }
 
-// Create link and add it to nav
-nav.insertAdjacentHTML('beforeend', `<a href="${url}">${title}</a>`);
-
 const ARE_WE_HOME = document.documentElement.classList.contains('home');
 
-if (!ARE_WE_HOME && !url.startsWith('http')) {
+if (!ARE_WE_HOME) {
   url = '../' + url;
 }
