@@ -15,11 +15,11 @@ currentLink?.classList.add('current');
 console.log(navLinks);
 
 let pages = [
-  { url: '', title: 'Home' },
-  { url: 'contacts/', title: 'Contact' },
-  { url: 'projects/', title: 'Project' },
+  { url: 'index.html', title: 'Home' },
+  { url: 'contacts/index.html', title: 'Contact' },
+  { url: 'projects/index.html', title: 'Project' },
   { url: 'https://github.com/hpucsd', title: 'Github' },
-  { url: 'resume/', title: 'Resume' },
+  { url: 'resume/index.html', title: 'Resume' },
 ];
 
 let nav = document.createElement('nav');
