@@ -6,11 +6,11 @@ function $$(selector, context = document) {
 
 const navLinks = $$("nav a");
 
-let currentLink = navLinks.find(
-  (a) => a.host === location.host && a.pathname === location.pathname
-);
+// let currentLink = navLinks.find(
+//   (a) => a.host === location.host && a.pathname === location.pathname
+// );
 
-currentLink?.classList.add('current');
+// currentLink?.classList.add('current');
 
 console.log(navLinks);
 
@@ -41,13 +41,10 @@ for (let p of pages) {
   a.href = url;
   a.textContent = title;
 
-  if (
-    a.host === location.host &&
-    (a.pathname === location.pathname || (ARE_WE_HOME && a.pathname === '/'))
-  ) {
-    console.log(`Highlighting current link: ${url}`);
-    a.classList.add('current');
-  }
+  a.classList.toggle(
+    'current',
+    a.host === location.host && a.pathname === location.pathname
+  );
 
   if (url.startsWith('http')) {
     a.target = "_blank";
