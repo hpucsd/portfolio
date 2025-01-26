@@ -50,16 +50,17 @@ html {
 
   --color-accent: oklch(67.11% 0.2039 164.12);
   accent-color: var(--color-accent);
+  color-scheme: dark
 
 } 
 
 nav a:hover {
 
-  --color-accent: oklch(67.11% 0.2039 164.12);
+  --color-accent: oklch(50% 10% 200 / 40%);
   border-bottom-width: 5px;
   border-bottom-color: var(--color-accent);
   border-bottom-style: solid;
-  background-color: oklch(from var(--color-accent) 95% 5% h);
+  background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
   font-weight: bold;
 
 }

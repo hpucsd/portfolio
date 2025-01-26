@@ -46,6 +46,14 @@ for (let p of pages) {
     a.host === location.host && a.pathname === location.pathname
   );
 
+  if (a.host === location.host) {
+    console.log('works')
+  }
+
+  if (a.pathname === location.pathname) {
+    console.log('works')
+  }
+
   if (url.startsWith('http')) {
     a.target = "_blank";
   }
