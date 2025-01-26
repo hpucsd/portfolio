@@ -51,7 +51,7 @@ for (let p of pages) {
   }
 
   if (a.pathname === location.pathname) {
-    console.log('works')
+    console.log('working')
   }
 
   if (url.startsWith('http')) {
