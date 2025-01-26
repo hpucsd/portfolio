@@ -50,6 +50,9 @@ for (let p of pages) {
     console.log('works')
   }
 
+  console.log(location.pathname)
+  console.log(a.pathname)
+
   if (a.pathname === location.pathname) {
     console.log('working')
   }
