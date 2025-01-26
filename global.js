@@ -45,6 +45,10 @@ for (let p of pages) {
     a.classList.add('current');
   }
 
+  if (url.startsWith('http')) {
+    a.target = "_blank";
+  }
+
   nav.append(a);
 
 }
