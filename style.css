@@ -23,7 +23,7 @@ nav {
   display: flex;
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-bottom-color: oklch(80% 3% 200);
+  border-bottom-color: oklch(50% 10% 200 / 40%);
 
   a {
     
@@ -56,7 +56,7 @@ html {
 
 nav a:hover {
 
-  --color-accent: oklch(50% 10% 200 / 40%);
+  --color-accent: oklch(67.11% 0.2039 164.12);
   border-bottom-width: 5px;
   border-bottom-color: var(--color-accent);
   border-bottom-style: solid;
