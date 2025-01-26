@@ -70,7 +70,7 @@ document.body.insertAdjacentHTML(
   `
   <label class="color-scheme">
     Theme:
-    <select id="theme-switcher">
+    <select id="switch-theme">
       <option value="auto">Automatic</option>
       <option value="light">Light</option>
       <option value="dark">Dark</option>
@@ -79,20 +79,27 @@ document.body.insertAdjacentHTML(
   `
 );
 
-select.addEventListener('input', function (event) {
+const themeSwitcher = document.getElementById('switch-theme');
+
+themeSwitcher.addEventListener('input', function (event) {
   console.log('color scheme changed to', event.target.value);
   document.documentElement.style.setProperty('color-scheme', event.target.value);
-});
 
+  localStorage.colorScheme = event.target.value;
+});
 
 const savedColorScheme = localStorage.colorScheme;
 if (savedColorScheme) {
-  // If a preference exists, apply it
+
   setColorScheme(savedColorScheme);
-  // Update the select dropdown to reflect the saved choice
+
   themeSwitcher.value = savedColorScheme;
 } else {
-  // If no preference is saved, set the default value to "auto"
+
   setColorScheme('auto');
   themeSwitcher.value = 'auto';
+}
+
+function setColorScheme(colorScheme) {
+  document.documentElement.style.setProperty('color-scheme', colorScheme);
 }
