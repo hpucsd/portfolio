@@ -61,3 +61,18 @@ for (let p of pages) {
   nav.append(a);
 
 }
+
+
+document.body.insertAdjacentHTML(
+  'afterbegin',
+  `
+  <label class="color-scheme">
+    Theme:
+    <select id="theme-switcher">
+      <option value="auto">Automatic</option>
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+    </select>
+  </label>
+  `
+);
