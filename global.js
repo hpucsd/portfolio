@@ -14,11 +14,6 @@ const navLinks = $$("nav a");
 
 console.log(navLinks);
 
-select.addEventListener('input', function (event) {
-  console.log('color scheme changed to', event.target.value);
-  document.documentElement.style.setProperty('color-scheme', event.target.value);
-});
-
 let pages = [
   { url: 'index.html', title: 'Home' },
   { url: 'contact/index.html', title: 'Contact' },
@@ -70,7 +65,6 @@ for (let p of pages) {
 
 }
 
-
 document.body.insertAdjacentHTML(
   'afterbegin',
   `
@@ -84,3 +78,21 @@ document.body.insertAdjacentHTML(
   </label>
   `
 );
+
+select.addEventListener('input', function (event) {
+  console.log('color scheme changed to', event.target.value);
+  document.documentElement.style.setProperty('color-scheme', event.target.value);
+});
+
+
+const savedColorScheme = localStorage.colorScheme;
+if (savedColorScheme) {
+  // If a preference exists, apply it
+  setColorScheme(savedColorScheme);
+  // Update the select dropdown to reflect the saved choice
+  themeSwitcher.value = savedColorScheme;
+} else {
+  // If no preference is saved, set the default value to "auto"
+  setColorScheme('auto');
+  themeSwitcher.value = 'auto';
+}
