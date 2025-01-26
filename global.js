@@ -41,8 +41,11 @@ for (let p of pages) {
   a.href = url;
   a.textContent = title;
 
-  if (a.host === location.host && a.pathname === location.pathname) {
-    console.log(`Current page matched: ${url}`);
+  if (
+    a.host === location.host &&
+    (a.pathname === location.pathname || (ARE_WE_HOME && a.pathname === '/'))
+  ) {
+    console.log(`Highlighting current link: ${url}`);
     a.classList.add('current');
   }
 
