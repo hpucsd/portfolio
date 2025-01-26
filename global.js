@@ -14,6 +14,11 @@ const navLinks = $$("nav a");
 
 console.log(navLinks);
 
+select.addEventListener('input', function (event) {
+  console.log('color scheme changed to', event.target.value);
+  document.documentElement.style.setProperty('color-scheme', event.target.value);
+});
+
 let pages = [
   { url: 'index.html', title: 'Home' },
   { url: 'contact/index.html', title: 'Contact' },
@@ -79,9 +84,3 @@ document.body.insertAdjacentHTML(
   </label>
   `
 );
-
-select.addEventListener('input', function (event) {
-  console.log('color scheme changed to', event.target.value);
-  document.documentElement.style.setProperty('color-scheme', event.target.value);
-
-});
