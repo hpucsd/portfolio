@@ -33,7 +33,7 @@ for (let p of pages) {
   let url = p.url;
   let title = p.title;
 
-  if (!url.startsWith('http')) {
+  if (!ARE_WE_HOME && !url.startsWith('http')) {
     url = '../' + url;
   }
 
