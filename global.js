@@ -42,6 +42,7 @@ for (let p of pages) {
   a.textContent = title;
 
   if (a.host === location.host && a.pathname === location.pathname) {
+    console.log(`Current page matched: ${url}`);
     a.classList.add('current');
   }
 
