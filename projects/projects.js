@@ -6,6 +6,10 @@ const titleElement = document.querySelector('.projects-title');
 
 const projectsContainer = document.querySelector('.projects');
 
-titleElement.textContent = `Projects (${projects.length})`;
+if (projects.length == 1) {
+    titleElement.textContent = `${projects.length} Project`;
+} else {
+    titleElement.textContent = `${projects.length} Projects`;
+}
 
 renderProjects(projects, projectsContainer, 'h2')
