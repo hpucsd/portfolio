@@ -1,12 +1,25 @@
 import { fetchJSON, renderProjects, fetchGithubData } from './global.js';
 
-const projects = await fetchJSON('./lib/projects.json');
+async function loadLatestProjects() {
+  const projectsContainer = document.querySelector('.projects');
 
-const latestProjects = projects.slice(0, 3);
+  if (!projectsContainer) {
+      console.error('Error: No container with class "projects" found in index.html');
+      return;
+  }
 
-const projectsContainer = document.querySelector('.projects');
+  try {
+      const projects = await fetchJSON('./lib/projects.json');
 
-renderProjects(latestProjects, projectsContainer, 'h2');
+      const latestProjects = projects.slice(0, 3);
+
+      renderProjects(latestProjects, projectsContainer, 'h3');
+  } catch (error) {
+      console.error('Error loading latest projects:', error);
+  }
+}
+
+loadLatestProjects();
 
 const githubData = await fetchGithubData('giorgianicolaou');
 
