@@ -1,73 +1,73 @@
 [
     {
-        "title": "Lorem ipsum dolor sit.",
-        "year": "2000",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas consectetur placeat at maxime unde blanditiis ad nesciunt quia sint consequatur similique eaque id nostrum, cupiditate iure distinctio. Quis, officia at?"
+        "title": "DSC 106 Project #1",
+        "year": "2025",
+        "image": "portfolio/images/project1img.png",
+        "description": "Project 1 of DSC 106 which showcases a graph that showcases the rainfall patterns within the coasts of America."
     },
     {
-        "title": "Eos, modi? Incidunt, adipisci!",
-        "year": "2000",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Nostrum quo atque molestias facere cupiditate minus sequi animi sapiente perferendis reprehenderit blanditiis corporis accusantium, est veritatis neque aliquid odit eius! Magnam tenetur esse sit odio rerum, quidem asperiores cumque."
+        "title": "DSC 106 Project #2 Checkpoint",
+        "year": "2025",
+        "image": "portfolio/images/project2img.png",
+        "description": "This showcases two images in which they portray deceptive and honest data visualizations."
     },
     {
-        "title": "Animi accusamus omnis dolores.",
-        "year": "2000",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Temporibus, cum! Sunt exercitationem libero fuga eius pariatur autem similique! Debitis, vel reprehenderit recusandae, officia eveniet minus officiis, asperiores distinctio reiciendis temporibus harum placeat delectus tenetur praesentium provident explicabo facilis!"
+        "title": "Prothestic Hand",
+        "year": "2025",
+        "image": "portfolio/images/prostheticimg.jpg",
+        "description": "Project within Neurotech in which we code and design a prosthetic hand that moves based on EMG signals."
     },
     {
-        "title": "Nam nobis optio esse?",
-        "year": "2000",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Minus, eos? Necessitatibus molestiae dolorum quibusdam? Deleniti possimus illo accusantium facilis, minus hic non, aspernatur architecto ipsam dignissimos exercitationem molestiae enim tenetur laudantium temporibus facere. Quo suscipit deserunt quam corporis."
+        "title": "DSC 80 Final Project",
+        "year": "2024",
+        "image": "portfolio/images/dsc80finalproject.png",
+        "description": "For the DSC 80 final project it goes over my data analysis around power outages and climate regions."
     },
     {
-        "title": "Natus alias quia animi.",
-        "year": "2000",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Velit, autem sequi. Illum hic earum, odit ratione voluptatibus quam delectus, nam quo harum nobis vitae doloremque recusandae alias ab praesentium asperiores sit, error nulla! Vero velit consectetur dolores ex."
+        "title": "Cogs 9 Final Project",
+        "year": "2023",
+        "image": "portfolio/images/cogs9final.png",
+        "description": "The Cogs 9 final project goes over the relationships within hip hop and age and humans."
     },
     {
-        "title": "Voluptatibus repudiandae ad eveniet!",
-        "year": "2000",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Eius assumenda similique nisi at, nostrum perspiciatis cupiditate minima facilis reiciendis eveniet culpa in labore animi, pariatur quo ad et aspernatur beatae, consequuntur neque vero quisquam? Est perspiciatis dolore natus?"
+        "title": "DSC 20 Final Project",
+        "year": "2024",
+        "image": "portfolio/images/dsc20finalproject.png",
+        "description": "The DSC 20 final project alters the images inserted into the function such as reducing the saturation"
     },
     {
         "title": "Vel culpa dicta possimus?",
-        "year": "2000",
+        "year": "2021",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Illo minima dolorem eaque ducimus nobis. Optio molestiae fugiat ducimus et est nulla quos nostrum non aperiam cumque! Dicta nisi pariatur minus dolores provident vel amet facere culpa perspiciatis placeat!"
     },
     {
         "title": "Nostrum debitis obcaecati impedit.",
-        "year": "2000",
+        "year": "2023",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Tempore recusandae vitae magni quae voluptatem animi, accusamus minus vero iste vel expedita fugit rem odio laudantium repudiandae eum aperiam itaque temporibus necessitatibus aliquam! Quo tempore dolores ut culpa ab."
     },
     {
         "title": "Blanditiis in totam distinctio?",
-        "year": "2000",
+        "year": "2021",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Commodi illo quos incidunt totam quo nesciunt et hic, quia ullam dicta maiores tenetur optio perspiciatis autem mollitia inventore iure reiciendis consectetur. Officia laudantium nemo magni possimus consequuntur incidunt repellat!"
     },
     {
         "title": "Pariatur perferendis accusantium necessitatibus!",
-        "year": "2000",
+        "year": "2022",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Sit culpa accusamus asperiores id sint reprehenderit nulla, dolorum repellat porro maiores. Eligendi corporis odit molestias quod perspiciatis vero itaque repellat tempore nam eos animi ad unde, assumenda minus illum."
     },
     {
         "title": "Impedit fugit vel ea!",
-        "year": "2000",
+        "year": "2021",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Laudantium, in! Nobis cum aspernatur adipisci dicta atque, dolor est. Quis, ducimus iusto amet hic alias mollitia porro ullam debitis voluptates ex, rerum laborum voluptatum quo eos inventore deleniti suscipit?"
     },
     {
         "title": "Repellat omnis adipisci id.",
-        "year": "2000",
+        "year": "2020",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Vel explicabo, excepturi eius aut ea incidunt quasi officiis earum cupiditate temporibus ducimus voluptates consectetur voluptatibus, illo repellendus commodi magnam eveniet culpa! Vero architecto distinctio ullam maiores dolore voluptatem corrupti?"
     }
