@@ -54,16 +54,6 @@ html {
 
 } 
 
-img {
-
-  display: block;
-  max-width:230px;
-  max-height:95px;
-  width: auto;
-  height: auto;
-  
-}
-
 nav a:hover {
 
   --color-accent: oklch(67.11% 0.2039 164.12);
