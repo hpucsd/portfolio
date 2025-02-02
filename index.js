@@ -9,7 +9,7 @@ const latestProjects = projects.slice(0, 3);
 
 renderProjects(latestProjects, projectsContainer, 'h3');
 
-const githubData = await fetchGitHubData('hpuscd');
+const githubData = await fetchGitHubData('hpucsd');
 
 const profileStats = document.querySelector('#profile-stats');
 
