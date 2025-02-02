@@ -54,6 +54,16 @@ html {
 
 } 
 
+img {
+
+  display: block;
+  max-width:230px;
+  max-height:95px;
+  width: auto;
+  height: auto;
+  
+}
+
 nav a:hover {
 
   --color-accent: oklch(67.11% 0.2039 164.12);
@@ -73,20 +83,5 @@ nav a:hover {
 }
 
 .github-stats {
-  display: flex;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-bottom-color: oklch(50% 10% 200 / 40%);
-}
-
-.github-stats dt {
-  font-weight: bold;
-}
-
-.github-stats dd {
-  flex: 1;
-  text-decoration: none;
-  color: inherit;
-  text-align: center;
-  padding: 0.5em;
+  display: grid
 }
