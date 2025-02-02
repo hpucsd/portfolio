@@ -73,23 +73,20 @@ nav a:hover {
 }
 
 .github-stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  text-align: center;
-  padding: 10px;
-  background: #f5f5f5;
-  border-radius: 8px;
-  max-width: 600px;
-  margin: auto;
+  display: flex;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: oklch(50% 10% 200 / 40%);
 }
 
 .github-stats dt {
   font-weight: bold;
-  grid-row: 1;
 }
 
 .github-stats dd {
-  grid-row: 2;
-  margin: 0;
+  flex: 1;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  padding: 0.5em;
 }
