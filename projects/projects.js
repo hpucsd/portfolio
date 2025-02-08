@@ -115,6 +115,44 @@ function renderPieChart(projectsGiven) {
 
     let colors = d3.scaleOrdinal(d3.schemeTableau10);
     
+     // Append new pie chart arcs
+    arcData.forEach((d, i) => {
+        svg.append('path')
+        .attr('d', arcGenerator(d))
+        .attr('fill', colors(i))
+        .on('mouseover', function() {
+            // Fade out other wedges
+            d3.selectAll('path')
+            .style('opacity', 0.5);
+            d3.select(this)
+            .style('opacity', 1);
+        })
+        .on('mouseout', function() {
+            // Reset opacity on mouseout
+            d3.selectAll('path')
+            .style('opacity', 1);
+        })
+        .on('click', function() {
+            selectedIndex = selectedIndex === i ? -1 : i;
+
+            // Update wedge selection and highlight it
+            svg.selectAll('path')
+            .attr('class', (_, idx) => idx === selectedIndex ? 'selected' : '');
+
+            // Update the legend
+            legend.selectAll('li')
+            .attr('class', (_, idx) => idx === selectedIndex ? 'selected' : '');
+
+            // Filter projects based on selection
+            if (selectedIndex === -1) {
+            renderProjects(projects, document.querySelector('.projects-container'), 'h2');
+            } else {
+            let selectedYear = data[selectedIndex].label;
+            let filteredProjects = projects.filter(p => p.year === selectedYear);
+            renderProjects(filteredProjects, document.querySelector('.projects-container'), 'h2');
+            }
+        });
+    });
 
     newArcs.forEach((arc, idx) => {
         d3.select('svg')
@@ -136,4 +174,9 @@ function renderPieChart(projectsGiven) {
     // re-render legends and pie chart when event triggers
     renderProjects(filteredProjects, projectsContainer, 'h2');
     renderPieChart(filteredProjects);
+
+    let newSVG = d3.select('svg'); 
+    newSVG.selectAll('path').remove();
   });
+
+
