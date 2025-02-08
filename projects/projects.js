@@ -69,6 +69,25 @@ data.forEach((d, idx) => {
           .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`); // set the inner html of <li>
 })
 
+let query = '';
+let searchInput = document.querySelector('.searchBar');
+
+searchInput.addEventListener('input', (event) => {
+    query = event.target.value.toLowerCase();
+  
+    // Filter projects based on the search query
+    let filteredProjects = projects.filter((project) => {
+      let values = Object.values(project).join('\n').toLowerCase();
+      return values.includes(query);
+    });
+  
+    // Update the displayed projects
+    renderProjects(filteredProjects, projectsContainer, 'h2');
+    
+    // Re-render the pie chart with filtered projects
+    renderPieChart(filteredProjects);
+});
+
 function renderPieChart(projectsGiven) {
     let newSVG = d3.select('svg'); 
     newSVG.selectAll('path').remove();

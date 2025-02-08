@@ -120,3 +120,19 @@ svg {
   width: 200px;
   height: 200px;
 }
+
+path {
+  transition: 300ms;
+}
+
+svg path:hover {
+  opacity: 1 !important;
+}
+
+svg path {
+  opacity: 1;
+}
+
+svg path:not(:hover) {
+  opacity: 0.5;
+}
