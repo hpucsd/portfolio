@@ -52,6 +52,6 @@ arcs.forEach((arc, idx) => {
     d3.select('svg')
       .append('path')
       .attr('d', arc)
-      .attr(colors(0), colors(1), colors(2), colors(3), colors(4)) // Fill in the attribute for fill color via indexing the colors variable
+      .attr(colors(idx)) // Fill in the attribute for fill color via indexing the colors variable
 })
 
