@@ -45,14 +45,13 @@ let angle = 0;
 
 let sliceGenerator = d3.pie().value((d) => d.value);
 let arcData = sliceGenerator(data);
+let arcs = arcData.map((d) => arcGenerator(d));
 
 for (let d of data) {
   let endAngle = angle + (d / total) * 2 * Math.PI;
   arcData.push({ startAngle: angle, endAngle });
   angle = endAngle;
 }
-
-let arcs = arcData.map((d) => arcGenerator(d));
 
 let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
@@ -70,17 +69,52 @@ data.forEach((d, idx) => {
           .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`); // set the inner html of <li>
 })
 
-let query = '';
+function renderPieChart(projectsGiven) {
+    let newSVG = d3.select('svg'); 
+    newSVG.selectAll('path').remove();
+    
+    // re-calculate rolled data
+    let newRolledData = d3.rollups(
+      projectsGiven,
+      (v) => v.length,
+      (d) => d.year,
+    );
+    // re-calculate data
+    let newData = newRolledData.map(([year, count]) => {
+        return { value: count, label: year };
+    });
+    // re-calculate slice generator, arc data, arc, etc.
+    let newSliceGenerator = d3.pie().value((d) => d.value);
+    let newArcData = newSliceGenerator(newData)
+    let newArcs = newArcData.map((d) => arcGenerator(d));
 
-let searchInput = document.querySelector('.searchBar');
+    for (let d of data) {
+        let endAngle = angle + (d / total) * 2 * Math.PI;
+        arcData.push({ startAngle: angle, endAngle });
+        angle = endAngle;
+    }
 
-searchInput.addEventListener('change', (event) => {
-  // update query value
-  query = event.target.value;
-  // TODO: filter the projects
-  let filteredProjects = projects.filter((project) => project.title.includes(query));
+    let colors = d3.scaleOrdinal(d3.schemeTableau10);
+    
 
+    newArcs.forEach((arc, idx) => {
+        d3.select('svg')
+          .append('path')
+          .attr('d', arc)
+          .attr("fill", colors(idx)); // Fill in the attribute for fill color via indexing the colors variable
+    });
+    
+    let legend = d3.select('.legend');
+    data.forEach((d, idx) => {
+        legend.append('li')
+              .attr('style', `--color:${colors(idx)}`) // set the style attribute while passing in parameters
+              .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`); // set the inner html of <li>
+    })
+  }
 
-  // TODO: render updated projects!
-
-});
+  searchInput.addEventListener('change', (event) => {
+    let filteredProjects = setQuery(event.target.value);
+    // re-render legends and pie chart when event triggers
+    renderProjects(filteredProjects, projectsContainer, 'h2');
+    renderPieChart(filteredProjects);
+  });
