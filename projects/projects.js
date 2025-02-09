@@ -89,8 +89,12 @@ searchInput.addEventListener('input', (event) => {
 });
 
 function renderPieChart(projectsGiven) {
-    
-  // re-calculate rolled data
+
+    let newSVG = d3.select('svg'); 
+    newSVG.selectAll('path').remove();
+    legend.selectAll('*').remove();
+
+    // re-calculate rolled data
     let newRolledData = d3.rollups(
       projectsGiven,
       (v) => v.length,
@@ -114,10 +118,6 @@ function renderPieChart(projectsGiven) {
     }
 
     let colors = d3.scaleOrdinal(d3.schemeTableau10);
-    
-    let newSVG = d3.select('svg'); 
-    newSVG.selectAll('path').remove();
-    legend.selectAll('*').remove();
 
     // Append new pie chart arcs
     newArcData.forEach((d, i) => {
