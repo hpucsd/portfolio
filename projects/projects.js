@@ -16,7 +16,7 @@ renderProjects(projects, projectsContainer, 'h2')
 
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm";
 
-//let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
+let arcGenerator = d3.arc().innerRadius(0).outerRadius(75);
 
 // let arc = arcGenerator({
 //     startAngle: 0,
@@ -31,82 +31,152 @@ let rolledData = d3.rollups(
   (d) => d.year,
 );
 
-let data = rolledData.map(([year, count]) => ({ value: count, label: year }));
+let data = rolledData.map(([year, count]) => {
+    return { value: count, label: year };
+});
 
-let total = data.reduce((sum, d) => sum + d.value, 0);
+let total = 0;
+
+for (let d of data) {
+  total += d.value;
+}
+
+let angle = 0;
 
 let sliceGenerator = d3.pie().value((d) => d.value);
 let arcData = sliceGenerator(data);
-let arcGenerator = d3.arc().innerRadius(0).outerRadius(100);
+let arcs = arcData.map((d) => arcGenerator(d));
+
+for (let d of data) {
+  let endAngle = angle + (d.value / total) * 2 * Math.PI;
+  arcData.push({ startAngle: angle, endAngle });
+  angle = endAngle;
+}
 
 let colors = d3.scaleOrdinal(d3.schemeTableau10);
-let svg = d3.select('svg');
 
-// Clear previous chart before rendering
-svg.selectAll('path').remove();
-
-arcData.forEach((d, idx) => {
-  svg.append('path')
-    .attr('d', arcGenerator(d))
-    .attr('fill', colors(idx))
-    .on('mouseover', function() {
-      d3.selectAll('path').style('opacity', 0.5);
-      d3.select(this).style('opacity', 1);
-    })
-    .on('mouseout', function() {
-      d3.selectAll('path').style('opacity', 1);
-    });
+arcs.forEach((arc, idx) => {
+    d3.select('svg')
+      .append('path')
+      .attr('d', arc)
+      .attr("fill", colors(idx)); // Fill in the attribute for fill color via indexing the colors variable
 });
 
 let legend = d3.select('.legend');
-legend.selectAll('*').remove(); // Clear previous legend
-
 data.forEach((d, idx) => {
-  legend.append('li')
-    .attr('style', `--color:${colors(idx)}`)
-    .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`);
-});
+    legend.append('li')
+          .attr('style', `--color:${colors(idx)}`) // set the style attribute while passing in parameters
+          .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`); // set the inner html of <li>
+})
 
+let query = '';
 let searchInput = document.querySelector('.searchBar');
+
 searchInput.addEventListener('input', (event) => {
-  let query = event.target.value.toLowerCase();
-  let filteredProjects = projects.filter((project) => {
-    let values = Object.values(project).join('\n').toLowerCase();
-    return values.includes(query);
-  });
-  renderProjects(filteredProjects, document.querySelector('.projects-container'), 'h2');
-  renderPieChart(filteredProjects);
+    query = event.target.value.toLowerCase();
+  
+    // Filter projects based on the search query
+    let filteredProjects = projects.filter((project) => {
+      let values = Object.values(project).join('\n').toLowerCase();
+      return values.includes(query);
+    });
+  
+    // Update the displayed projects
+    renderProjects(filteredProjects, projectsContainer, 'h2');
+    
+    // Re-render the pie chart with filtered projects
+    renderPieChart(filteredProjects);
 });
 
 function renderPieChart(projectsGiven) {
-  let newRolledData = d3.rollups(
-    projectsGiven,
-    (v) => v.length,
-    (d) => d.year,
-  );
+    
+  // re-calculate rolled data
+    let newRolledData = d3.rollups(
+      projectsGiven,
+      (v) => v.length,
+      (d) => d.year,
+    );
 
-  let newData = newRolledData.map(([year, count]) => ({ value: count, label: year }));
-  let newArcData = sliceGenerator(newData);
+    // re-calculate data
+    let newData = newRolledData.map(([year, count]) => {
+        return { value: count, label: year };
+    });
 
-  svg.selectAll('path').remove();
-  legend.selectAll('*').remove();
+    // re-calculate slice generator, arc data, arc, etc.
+    let newSliceGenerator = d3.pie().value((d) => d.value);
+    let newArcData = newSliceGenerator(newData)
+    let newArcs = newArcData.map((d) => arcGenerator(d));
 
-  newArcData.forEach((d, i) => {
-    svg.append('path')
-      .attr('d', arcGenerator(d))
-      .attr('fill', colors(i))
-      .on('mouseover', function() {
-        d3.selectAll('path').style('opacity', 0.5);
-        d3.select(this).style('opacity', 1);
-      })
-      .on('mouseout', function() {
-        d3.selectAll('path').style('opacity', 1);
-      });
-  });
+    for (let d of data) {
+        let endAngle = angle + (d.value / total) * 2 * Math.PI;
+        newArcData.push({ startAngle: angle, endAngle });
+        angle = endAngle;
+    }
 
-  newData.forEach((d, idx) => {
-    legend.append('li')
-      .attr('style', `--color:${colors(idx)}`)
-      .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`);
-  });
-}
+    let colors = d3.scaleOrdinal(d3.schemeTableau10);
+    
+    let newSVG = d3.select('svg'); 
+    newSVG.selectAll('path').remove();
+    legend.selectAll('*').remove();
+
+    // Append new pie chart arcs
+    newArcData.forEach((d, i) => {
+
+        svg.append('path')
+        .attr('d', arcGenerator(d))
+        .attr('fill', colors(i))
+        .on('mouseover', function() {
+            // Fade out other wedges
+            d3.selectAll('path')
+            .style('opacity', 0.5);
+            d3.select(this)
+            .style('opacity', 1);
+        })
+        .on('mouseout', function() {
+            // Reset opacity on mouseout
+            d3.selectAll('path')
+            .style('opacity', 1);
+        })
+        .on('click', function() {
+            selectedIndex = selectedIndex === i ? -1 : i;
+
+            // Update wedge selection and highlight it
+            svg.selectAll('path')
+            .attr('class', (_, idx) => idx === selectedIndex ? 'selected' : '');
+
+            // Update the legend
+            legend.selectAll('li')
+            .attr('class', (_, idx) => idx === selectedIndex ? 'selected' : '');
+
+            // Filter projects based on selection
+            if (selectedIndex === -1) {
+              renderProjects(projects, document.querySelector('.projects-container'), 'h2');
+            } else {
+              let selectedYear = data[selectedIndex].label;
+              let filteredProjects = projects.filter(p => p.year === selectedYear);
+              renderProjects(filteredProjects, document.querySelector('.projects-container'), 'h2');
+            }
+        });
+    });
+
+    newArcs.forEach((arc, idx) => {
+        d3.select('svg')
+          .append('path')
+          .attr('d', arc)
+          .attr("fill", colors(idx)); // Fill in the attribute for fill color via indexing the colors variable
+    });
+    
+    let legend = d3.select('.legend');
+    data.forEach((d, idx) => {
+        legend.append('li')
+              .attr('style', `--color:${colors(idx)}`) // set the style attribute while passing in parameters
+              .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`); // set the inner html of <li>
+
+    searchInput.addEventListener('change', (event) => {
+      let filteredProjects = setQuery(event.target.value);
+      // re-render legends and pie chart when event triggers
+      renderProjects(filteredProjects, projectsContainer, 'h2');
+      renderPieChart(filteredProjects);
+    });
+    })
+  }
