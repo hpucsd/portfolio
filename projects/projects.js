@@ -103,7 +103,7 @@ function renderPieChart(projectsGiven) {
     // Append new pie chart arcs
     newArcData.forEach((d, i) => {
 
-        svg.append('path')
+        newSVG.append('path')
         .attr('d', arcGenerator(d))
         .attr('fill', colors(i))
         .on('mouseover', function() {
@@ -122,7 +122,7 @@ function renderPieChart(projectsGiven) {
             selectedIndex = selectedIndex === i ? -1 : i;
 
             // Update wedge selection and highlight it
-            svg.selectAll('path')
+            newSVG.selectAll('path')
             .attr('class', (_, idx) => idx === selectedIndex ? 'selected' : '');
 
             // Update the legend
