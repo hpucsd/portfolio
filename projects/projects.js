@@ -71,6 +71,10 @@ data.forEach((d, idx) => {
 
 function renderPieChart(projectsGiven) {
 
+    // Clear previous pie chart and legend before redrawing
+    svg.selectAll('path').remove();
+    legend.selectAll('*').remove();
+  
     // re-calculate rolled data
     let newRolledData = d3.rollups(
       projectsGiven,
@@ -136,15 +140,15 @@ function renderPieChart(projectsGiven) {
         });
     });
 
-    newArcs.forEach((arc, idx) => {
-        d3.select('svg')
-          .append('path')
-          .attr('d', arc)
-          .attr("fill", colors(idx)); // Fill in the attribute for fill color via indexing the colors variable
-    });
+      // newArcs.forEach((arc, idx) => {
+      //     d3.select('svg')
+      //       .append('path')
+      //       .attr('d', arc)
+      //       .attr("fill", colors(idx)); // Fill in the attribute for fill color via indexing the colors variable
+      // });
     
     let legend = d3.select('.legend');
-    data.forEach((d, idx) => {
+    newData.forEach((d, idx) => {
         legend.append('li')
               .attr('style', `--color:${colors(idx)}`) // set the style attribute while passing in parameters
               .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`); // set the inner html of <li>
