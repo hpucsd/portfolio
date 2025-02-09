@@ -71,10 +71,6 @@ data.forEach((d, idx) => {
 
 function renderPieChart(projectsGiven) {
 
-    let newSVG = d3.select('svg'); 
-    newSVG.selectAll('path').remove();
-    legend.selectAll('*').remove();
-
     // re-calculate rolled data
     let newRolledData = d3.rollups(
       projectsGiven,
@@ -103,7 +99,7 @@ function renderPieChart(projectsGiven) {
     // Append new pie chart arcs
     newArcData.forEach((d, i) => {
 
-        newSVG.append('path')
+        svg.append('path')
         .attr('d', arcGenerator(d))
         .attr('fill', colors(i))
         .on('mouseover', function() {
@@ -122,7 +118,7 @@ function renderPieChart(projectsGiven) {
             selectedIndex = selectedIndex === i ? -1 : i;
 
             // Update wedge selection and highlight it
-            newSVG.selectAll('path')
+            svg.selectAll('path')
             .attr('class', (_, idx) => idx === selectedIndex ? 'selected' : '');
 
             // Update the legend
