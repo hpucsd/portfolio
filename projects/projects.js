@@ -38,7 +38,7 @@ let data = rolledData.map(([year, count]) => {
 let total = 0;
 
 for (let d of data) {
-  total += d;
+  total += d.value;
 }
 
 let angle = 0;
@@ -48,7 +48,7 @@ let arcData = sliceGenerator(data);
 let arcs = arcData.map((d) => arcGenerator(d));
 
 for (let d of data) {
-  let endAngle = angle + (d / total) * 2 * Math.PI;
+  let endAngle = angle + (d.value / total) * 2 * Math.PI;
   arcData.push({ startAngle: angle, endAngle });
   angle = endAngle;
 }
@@ -89,34 +89,35 @@ searchInput.addEventListener('input', (event) => {
 });
 
 function renderPieChart(projectsGiven) {
-    let newSVG = d3.select('svg'); 
-    newSVG.selectAll('path').remove();
     
-    // re-calculate rolled data
+  // re-calculate rolled data
     let newRolledData = d3.rollups(
       projectsGiven,
       (v) => v.length,
       (d) => d.year,
     );
+
     // re-calculate data
     let newData = newRolledData.map(([year, count]) => {
         return { value: count, label: year };
     });
+
     // re-calculate slice generator, arc data, arc, etc.
     let newSliceGenerator = d3.pie().value((d) => d.value);
     let newArcData = newSliceGenerator(newData)
     let newArcs = newArcData.map((d) => arcGenerator(d));
 
     for (let d of data) {
-        let endAngle = angle + (d / total) * 2 * Math.PI;
-        arcData.push({ startAngle: angle, endAngle });
+        let endAngle = angle + (d.value / total) * 2 * Math.PI;
+        newArcData.push({ startAngle: angle, endAngle });
         angle = endAngle;
     }
 
     let colors = d3.scaleOrdinal(d3.schemeTableau10);
     
-     // Append new pie chart arcs
-    arcData.forEach((d, i) => {
+    // Append new pie chart arcs
+    newArcData.forEach((d, i) => {
+
         svg.append('path')
         .attr('d', arcGenerator(d))
         .attr('fill', colors(i))
@@ -145,11 +146,11 @@ function renderPieChart(projectsGiven) {
 
             // Filter projects based on selection
             if (selectedIndex === -1) {
-            renderProjects(projects, document.querySelector('.projects-container'), 'h2');
+              renderProjects(projects, document.querySelector('.projects-container'), 'h2');
             } else {
-            let selectedYear = data[selectedIndex].label;
-            let filteredProjects = projects.filter(p => p.year === selectedYear);
-            renderProjects(filteredProjects, document.querySelector('.projects-container'), 'h2');
+              let selectedYear = data[selectedIndex].label;
+              let filteredProjects = projects.filter(p => p.year === selectedYear);
+              renderProjects(filteredProjects, document.querySelector('.projects-container'), 'h2');
             }
         });
     });
@@ -166,17 +167,12 @@ function renderPieChart(projectsGiven) {
         legend.append('li')
               .attr('style', `--color:${colors(idx)}`) // set the style attribute while passing in parameters
               .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`); // set the inner html of <li>
+
+    searchInput.addEventListener('change', (event) => {
+      let filteredProjects = setQuery(event.target.value);
+      // re-render legends and pie chart when event triggers
+      renderProjects(filteredProjects, projectsContainer, 'h2');
+      renderPieChart(filteredProjects);
+    });
     })
   }
-
-  searchInput.addEventListener('change', (event) => {
-    let filteredProjects = setQuery(event.target.value);
-    // re-render legends and pie chart when event triggers
-    renderProjects(filteredProjects, projectsContainer, 'h2');
-    renderPieChart(filteredProjects);
-
-    let newSVG = d3.select('svg'); 
-    newSVG.selectAll('path').remove();
-  });
-
-
