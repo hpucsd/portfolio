@@ -20,6 +20,7 @@ let pages = [
   { url: 'projects/index.html', title: 'Project' },
   { url: 'https://github.com/hpucsd', title: 'Github' },
   { url: 'resume/index.html', title: 'Resume' },
+  { url: 'meta/index.html', title: 'Meta' }
 ];
 
 let nav = document.createElement('nav');

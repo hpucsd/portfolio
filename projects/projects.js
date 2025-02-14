@@ -156,7 +156,7 @@ function renderPieChart(projectsGiven) {
 
     let searchInput = document.querySelector('.searchBar');
 
-    searchInput.addEventListener('input', (event) => {
+    searchInput.addEventListener('change', (event) => {
       let query = event.target.value.toLowerCase();
       let filteredProjects = projects.filter((project) => {
           let values = Object.values(project).join(' ').toLowerCase();
