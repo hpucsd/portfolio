@@ -17,6 +17,7 @@ async function loadData() {
   console.log(commits);
   displayStats();
   createScatterplot();
+  brushSelector();
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -243,19 +244,6 @@ function updateSelectionCount() {
 
   return selectedCommits;
 }
-
-// Assuming createScatterplot function creates the scatterplot and sets up xScale and yScale
-function createScatterplot(data) {
-  // Assuming xScale and yScale are created here
-  xScale = d3.scaleTime().domain(d3.extent(data, (d) => d.date)).range([0, width]);
-  yScale = d3.scaleLinear().domain(d3.extent(data, (d) => d.hourFrac)).range([height, 0]);
-
-  // Your scatterplot creation logic here
-}
-
-// Calling the brushSelector function to initialize the brushing
-brushSelector();
-
 
 function updateLanguageBreakdown() {
   const selectedCommits = brushSelection
