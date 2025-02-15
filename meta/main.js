@@ -99,6 +99,13 @@ function updateTooltipPosition(event) {
 }
 
 function createScatterplot() {
+    
+    // Sort commits by total lines in descending order
+    const sortedCommits = d3.sort(commits, (d) => -d.totalLines);
+
+    // Use sortedCommits in your selection instead of commits
+    dots.selectAll('circle').data(sortedCommits).join('circle');
+  
     const width = 1000;
     const height = 600;
 
@@ -116,6 +123,12 @@ function createScatterplot() {
 
     const yScale = d3.scaleLinear().domain([0, 24]).range([height, 0]);
 
+    const [minLines, maxLines] = d3.extent(commits, (d) => d.totalLines);
+    const rScale = d3
+    .scaleSqrt() // Change only this line
+    .domain([minLines, maxLines])
+    .range([2, 30]);
+
     const dots = svg.append('g').attr('class', 'dots');
 
     dots
@@ -124,8 +137,13 @@ function createScatterplot() {
       .join('circle')
       .attr('cx', (d) => xScale(d.datetime))
       .attr('cy', (d) => yScale(d.hourFrac))
-      .attr('r', 20)
+      .attr('r', 5)
       .attr('fill', 'steelblue')
+      .attr('r', (d) => rScale(d.totalLines))
+      .style('fill-opacity', 0.7) // Add transparency for overlapping dots
+      .on('mouseenter', function (event, d, i) {
+        d3.select(event.currentTarget).style('fill-opacity', 1)
+      })
       .on('mouseenter', (event, commit) => {
         updateTooltipContent(commit);
         updateTooltipVisibility(true);
@@ -137,6 +155,7 @@ function createScatterplot() {
       .on('mouseleave', () => {
         updateTooltipContent({});
         updateTooltipVisibility(false);
+        d3.select(event.currentTarget).style('fill-opacity', 0.7);
       });
 
     const margin = { top: 10, right: 10, bottom: 30, left: 20 };
