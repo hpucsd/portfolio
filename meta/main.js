@@ -2,6 +2,13 @@ console.log("JavaScript file loaded!");
 
 let data = [];
 let commits = [];
+let xScale = d3
+      .scaleTime()
+      .domain(d3.extent(sortedCommits, (d) => d.datetime))
+      .range([0, width])
+      .nice();
+
+let yScale = d3.scaleLinear().domain([0, 24]).range([height, 0]);
 
 async function loadData() {
     data = await d3.csv('loc.csv', (row) => ({
@@ -116,13 +123,13 @@ function createScatterplot() {
       .attr('viewBox', `0 0 ${width} ${height}`)
       .style('overflow', 'visible');
 
-    const xScale = d3
+    xScale = d3
       .scaleTime()
       .domain(d3.extent(sortedCommits, (d) => d.datetime))
       .range([0, width])
       .nice();
 
-    const yScale = d3.scaleLinear().domain([0, 24]).range([height, 0]);
+    yScale = d3.scaleLinear().domain([0, 24]).range([height, 0]);
 
     const [minLines, maxLines] = d3.extent(sortedCommits, (d) => d.totalLines);
     const rScale = d3
@@ -204,9 +211,6 @@ function createScatterplot() {
 
 function brushSelector() {
   const svg = document.querySelector('svg');
-  d3.select(svg).call(d3.brush());
-
-  // Create brush
   d3.select(svg).call(d3.brush());
 
   // Raise dots and everything after overlay
