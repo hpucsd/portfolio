@@ -102,10 +102,10 @@ function createScatterplot() {
     
     // Sort commits by total lines in descending order
     const sortedCommits = d3.sort(commits, (d) => -d.totalLines);
+    console.log("Sorted commits:", sortedCommits);
+    console.log("Commits:", commits);
 
-    // Use sortedCommits in your selection instead of commits
-    dots.selectAll('circle').data(sortedCommits).join('circle');
-  
+
     const width = 1000;
     const height = 600;
 
@@ -117,13 +117,13 @@ function createScatterplot() {
 
     const xScale = d3
       .scaleTime()
-      .domain(d3.extent(commits, (d) => d.datetime))
+      .domain(d3.extent(sortedCommits, (d) => d.datetime))
       .range([0, width])
       .nice();
 
     const yScale = d3.scaleLinear().domain([0, 24]).range([height, 0]);
 
-    const [minLines, maxLines] = d3.extent(commits, (d) => d.totalLines);
+    const [minLines, maxLines] = d3.extent(sortedCommits, (d) => d.totalLines);
     const rScale = d3
     .scaleSqrt() // Change only this line
     .domain([minLines, maxLines])
@@ -131,9 +131,12 @@ function createScatterplot() {
 
     const dots = svg.append('g').attr('class', 'dots');
 
+      // Use sortedCommits in your selection instead of commits
+      dots.selectAll('circle').data(sortedCommits).join('circle');
+
     dots
       .selectAll('circle')
-      .data(commits)
+      .data(sortedCommits)
       .join('circle')
       .attr('cx', (d) => xScale(d.datetime))
       .attr('cy', (d) => yScale(d.hourFrac))
