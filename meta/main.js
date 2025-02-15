@@ -11,7 +11,7 @@ let xScale = d3
 let yScale = d3.scaleLinear().domain([0, 24]).range([height, 0]);
 
 async function loadData() {
-    data = await d3.csv('loc.csv', (row) => ({
+  data = await d3.csv('loc.csv', (row) => ({
         ...row,
         line: Number(row.line), // or just +row.line
         depth: Number(row.depth),
@@ -60,6 +60,10 @@ function processCommits() {
 
       return ret;
     });
+  
+  // Sort commits by totalLines in descending order
+  commits = d3.sort(commits, (d) => -d.totalLines);
+  console.log("Sorted commits:", commits);
 }
 
 function displayStats() {
