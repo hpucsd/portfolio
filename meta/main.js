@@ -131,6 +131,9 @@ function createScatterplot() {
         updateTooltipVisibility(true);
         updateTooltipPosition(event);
       })
+      .on('mousemove', (event) => {
+        updateTooltipPosition(event);
+      })
       .on('mouseleave', () => {
         updateTooltipContent({});
         updateTooltipVisibility(false);
