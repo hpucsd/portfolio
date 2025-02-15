@@ -47,3 +47,25 @@ function processCommits() {
       return ret;
     });
 }
+
+function displayStats() {
+  const dl = d3.select('#stats').append('dl').attr('class', 'stats');
+
+  dl.append('dt').html('Total <abbr title="Lines of code">LOC</abbr>');
+  dl.append('dd').text(data.length);
+
+  dl.append('dt').text('Total commits');
+  dl.append('dd').text(commits.length);
+
+  const maxDepth = d3.max(data, (d) => d.depth);
+  dl.append('dt').text('Maximum depth');
+  dl.append('dd').text(maxDepth);
+
+  const avgDepth = d3.mean(data, (d) => d.depth).toFixed(2);
+  dl.append('dt').text('Average depth');
+  dl.append('dd').text(avgDepth);
+
+  const numFiles = d3.group(data, (d) => d.file).size;
+  dl.append('dt').text('Number of files');
+  dl.append('dd').text(numFiles);
+}
