@@ -150,11 +150,10 @@ function createScatterplot() {
       .on('mouseenter', (event, commit) => {
         updateTooltipContent(commit);
         updateTooltipVisibility(true);
-        updateTooltipPosition(event);
       })
-      // .on('mousemove', (event) => {
-      //   updateTooltipPosition(event);
-      // })
+      .on('mousemove', (event) => {
+          updateTooltipPosition(event); // Only update position on mousemove
+      })
       .on('mouseleave', () => {
         updateTooltipContent({});
         updateTooltipVisibility(false);
