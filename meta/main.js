@@ -99,8 +99,8 @@ function updateTooltipPosition(event) {
 }
 
 function createScatterplot() {
-    const width = 2000;
-    const height = 1200;
+    const width = 1000;
+    const height = 600;
 
     const svg = d3
       .select('#chart')
@@ -124,7 +124,7 @@ function createScatterplot() {
       .join('circle')
       .attr('cx', (d) => xScale(d.datetime))
       .attr('cy', (d) => yScale(d.hourFrac))
-      .attr('r', 5)
+      .attr('r', 20)
       .attr('fill', 'steelblue')
       .on('mouseenter', (event, commit) => {
         updateTooltipContent(commit);
