@@ -1,3 +1,5 @@
+console.log("JavaScript file loaded!");
+
 let data = [];
 
 async function loadData() {
