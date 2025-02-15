@@ -99,8 +99,8 @@ function updateTooltipPosition(event) {
 }
 
 function createScatterplot() {
-    const width = 1000;
-    const height = 600;
+    const width = 2000;
+    const height = 1200;
 
     const svg = d3
       .select('#chart')
@@ -131,9 +131,9 @@ function createScatterplot() {
         updateTooltipVisibility(true);
         updateTooltipPosition(event);
       })
-      .on('mousemove', (event) => {
-        updateTooltipPosition(event);
-      })
+      // .on('mousemove', (event) => {
+      //   updateTooltipPosition(event);
+      // })
       .on('mouseleave', () => {
         updateTooltipContent({});
         updateTooltipVisibility(false);
