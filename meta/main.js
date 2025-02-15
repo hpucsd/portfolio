@@ -2,13 +2,6 @@ console.log("JavaScript file loaded!");
 
 let data = [];
 let commits = [];
-let xScale = d3
-      .scaleTime()
-      .domain(d3.extent(sortedCommits, (d) => d.datetime))
-      .range([0, width])
-      .nice();
-
-let yScale = d3.scaleLinear().domain([0, 24]).range([height, 0]);
 
 async function loadData() {
   data = await d3.csv('loc.csv', (row) => ({
@@ -66,6 +59,14 @@ function processCommits() {
   console.log("Sorted commits:", commits);
 }
 
+let xScale = d3
+      .scaleTime()
+      .domain(d3.extent(sortedCommits, (d) => d.datetime))
+      .range([0, width])
+      .nice();
+
+let yScale = d3.scaleLinear().domain([0, 24]).range([height, 0]);
+
 function displayStats() {
   const dl = d3.select('#stats').append('dl').attr('class', 'stats');
 
@@ -116,7 +117,6 @@ function createScatterplot() {
     const sortedCommits = d3.sort(commits, (d) => -d.totalLines);
     console.log("Sorted commits:", sortedCommits);
     console.log("Commits:", commits);
-
 
     const width = 1000;
     const height = 600;
