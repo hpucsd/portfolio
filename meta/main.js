@@ -126,11 +126,15 @@ function createScatterplot() {
       .attr('cy', (d) => yScale(d.hourFrac))
       .attr('r', 5)
       .attr('fill', 'steelblue')
-      .on('mousemove', updateTooltipPosition)
+      .on('mouseenter', (event, commit) => {
+        updateTooltipContent(commit);
+        updateTooltipVisibility(true);
+        updateTooltipPosition(event);
+      })
       .on('mouseleave', () => {
-            updateTooltipContent({});
-            updateTooltipVisibility(false);
-       });
+        updateTooltipContent({});
+        updateTooltipVisibility(false);
+      });
 
     const margin = { top: 10, right: 10, bottom: 30, left: 20 };
     
