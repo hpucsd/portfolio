@@ -284,3 +284,9 @@ function updateLanguageBreakdown() {
 
   return breakdown;
 }
+
+try {
+  createScatterplot();
+} catch (error) {
+  console.error('Error creating scatterplot:', error);
+}
