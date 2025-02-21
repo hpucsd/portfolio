@@ -2,37 +2,37 @@
     {
         "title": "DSC 106 Project #1",
         "year": "2025",
-        "image": "images/project1img.png",
+        "image": "../images/project1img.png",
         "description": "Project 1 of DSC 106 which showcases a graph that showcases the rainfall patterns within the coasts of America."
     },
     {
         "title": "DSC 106 Project #2 Checkpoint",
         "year": "2025",
-        "image": "images/project2img.png",
+        "image": "../images/project2img.png",
         "description": "This showcases two images in which they portray deceptive and honest data visualizations."
     },
     {
         "title": "Prothestic Hand",
         "year": "2025",
-        "image": "images/prostheticimg.jpg",
+        "image": "../images/prostheticimg.jpg",
         "description": "Project within Neurotech in which we code and design a prosthetic hand that moves based on EMG signals."
     },
     {
         "title": "DSC 80 Final Project",
         "year": "2024",
-        "image": "images/dsc80finalproject.png",
+        "image": "../images/dsc80finalproject.png",
         "description": "For the DSC 80 final project it goes over my data analysis around power outages and climate regions."
     },
     {
         "title": "Cogs 9 Final Project",
         "year": "2023",
-        "image": "images/cogs9final.png",
+        "image": "../images/cogs9final.png",
         "description": "The Cogs 9 final project goes over the relationships within hip hop and age and humans."
     },
     {
         "title": "DSC 20 Final Project",
         "year": "2024",
-        "image": "images/dsc20finalproject.png",
+        "image": "../images/dsc20finalproject.png",
         "description": "The DSC 20 final project alters the images inserted into the function such as reducing the saturation"
     },
     {

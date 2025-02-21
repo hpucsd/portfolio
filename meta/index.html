@@ -9,6 +9,80 @@
     <script src="main.js" type="module"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <style>
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .stat-row {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        dt {
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        dd {
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .gridlines {
+            opacity: 0.1;
+        }
+
+        dl.info {
+            transition-duration: 500ms;
+            transition-property: opacity, visibility;
+        }
+
+        dl.info[hidden]:not(:hover, :focus-within) {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Styling for the stats list with proper grid layout */
+        dl.stats {
+            display: grid;
+            grid-template-columns: auto 1fr; /* dt in first column, dd in second */
+            gap: 0.5rem 1rem; /* Spacing between elements */
+            align-items: center;
+        }
+
+        /* Ensure dt and dd appear side by side */
+        .stats dt {
+            font-weight: normal; /* Make labels less prominent */
+            color: #666; /* Dim the color for labels */
+            margin: 0; /* Remove default margins */
+        }
+
+        .stats dd {
+            font-weight: bold; /* Make values stand out */
+            color: #000; /* Ensure values are more prominent */
+            margin: 0; /* Remove default margins */
+        }
+
+        /* Tooltip styling */
+        .tooltip {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: rgba(255, 255, 255, 0.8); /* Soft white with slight transparency */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Subtle elevation effect */
+            border-radius: 8px; /* Rounded corners */
+            backdrop-filter: blur(2px); /* Frosted glass effect */
+            padding: 0.8em 1.2em; /* Comfortable spacing */
+            font-size: 0.9rem;
+            color: #333; /* Dark text for readability */
+            pointer-events: none; /* Prevents tooltip from blocking interactions */
+            z-index: 1000;
+        }
+
         circle {
             transition: 200ms;
             transform-origin: center;
@@ -18,15 +92,9 @@
         circle:hover {
             transform: scale(1.5);
         }
-        dl.info {
-            /* ... other styles ... */
-            transition-duration: 500ms;
-            transition-property: opacity, visibility;
-        }
 
-        dl.info[hidden]:not(:hover, :focus-within) {
-            opacity: 0;
-            visibility: hidden;
+        circle.selected {
+            fill: #ff6b6b;
         }
 
         @keyframes marching-ants {
@@ -42,10 +110,6 @@
             stroke-dasharray: 5 3;
             animation: marching-ants 2s linear infinite;
         }
-
-        circle.selected {
-            fill: #ff6b6b;
-        }
     </style>
 </head>
 <body>
@@ -53,7 +117,10 @@
 
     <p>This will provide statistics</p>
 
-    <div id="stats"></div>
+    <div id="stats">
+
+
+    </div>
 
     <h2>Commits by time of day</h2>
     
