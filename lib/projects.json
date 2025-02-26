@@ -36,10 +36,11 @@
         "description": "The DSC 20 final project alters the images inserted into the function such as reducing the saturation"
     },
     {
-        "title": "Vel culpa dicta possimus?",
-        "year": "2021",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Illo minima dolorem eaque ducimus nobis. Optio molestiae fugiat ducimus et est nulla quos nostrum non aperiam cumque! Dicta nisi pariatur minus dolores provident vel amet facere culpa perspiciatis placeat!"
+        "title": "Pedal Portfolio",
+        "year": "2025",
+        "image": "../images/pedalportfolio.png",
+        "description": "This is the DSC 106 Lab 7 Pedal Portfolio assignment.",
+        "url" : "https://hpucsd.github.io/pedal_portfolio/"
     },
     {
         "title": "Nostrum debitis obcaecati impedit.",
