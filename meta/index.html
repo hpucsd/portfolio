@@ -87,6 +87,10 @@
             transition: 200ms;
             transform-origin: center;
             transform-box: fill-box;
+            
+            @starting-style {
+                r: 0;
+            }
         }
 
         circle:hover {
@@ -110,6 +114,135 @@
             stroke-dasharray: 5 3;
             animation: marching-ants 2s linear infinite;
         }
+
+        #filter-ui {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 10px;
+        }
+
+        #filter-ui time {
+            margin-left: auto;
+            font-weight: bold;
+        }
+
+        .files > div {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: subgrid;
+        }
+
+        .files {
+        display: grid;
+        grid-template-columns: auto auto; /* Adjust this if necessary for your layout */
+        gap: 10px; /* Adjust the gap between the items */
+            dt {
+            grid-column: 1; /* Ensure the <dt> aligns in the first column */
+            }
+        }
+
+        .files > div {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: subgrid;
+        }
+
+        .line {
+            display: flex;
+            width: 0.5em;
+            aspect-ratio: 1;
+            background: steelblue;
+            border-radius: 50%;
+
+            dd {
+                grid-column: 2;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: start;
+                align-content: start;
+                gap: 0.15em;
+                padding-top: 0.6em;
+                margin-left: 0;
+            }
+        }
+
+            
+
+        .line-container {
+        grid-column: 2;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: start;
+        align-content: start;
+        gap: 0.15em;
+        padding-top: 0.6em;
+        margin-left: 0;
+        }
+
+        dt code {
+        font-family: monospace;
+        }
+
+        dt small {
+        display: block;
+        font-size: 0.8em;
+        opacity: 0.7;
+        }
+
+        :global(body) {
+        max-width: min(120ch, 80vw);
+        margin: 0 auto; /* Optional: to center the content horizontally */
+        }
+
+        #scrollytelling {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: subgrid;
+        }
+
+        /* feel free to play with this to make your scrolly more seemless with your plot */
+        #scroll-container {
+  height: 300px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  padding: 10px;
+  position: relative; /* Allow content to be contained properly */
+}
+
+        #chart {
+        grid-column: 2;
+        }
+
+        #spacer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: none; /* transparent */
+        pointer-events: none;
+        }
+
+        #items-container {
+  position: relative; /* Fix overlapping by making items flow normally */
+  display: flex;
+  flex-direction: column; /* Ensures each commit appears below the previous */
+  gap: 10px; /* Adds space between commit items */
+}
+
+        .item {
+        height: 30px;
+        padding: 10px;
+        box-sizing: border-box;
+        border-bottom: 2px solid #eee;
+        }
+
+        .commit-item {
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
     </style>
 </head>
 <body>
@@ -121,10 +254,36 @@
 
 
     </div>
-
+      
     <h2>Commits by time of day</h2>
     
-    <div id="chart"></div>
+    <div id="filter-ui">
+        <label>
+          Show commits until:
+          <input type="range" id="timeSlider" min="0" max="100" value="100" />
+          <time id="selectedTime">Date</time>
+        </label>
+    </div>
+
+    <dl class="files">
+        <!-- we want the following structure for each file
+        <div>
+          <dt>
+            <code>{file.name}</code>
+          </dt>
+          <dd>{file.lines.length} lines</dd>
+        </div>
+        <div>
+          ...
+        </div> -->
+    </dl>
+    <div id="scrollytelling">
+        <div id="scroll-container">
+            <div id="spacer"></div>
+            <div id="items-container"></div>
+        </div>
+        <div id="chart"></div>
+    </div>
 
     <dl id="commit-tooltip" class="info tooltip">
         <dt>Commit</dt>
